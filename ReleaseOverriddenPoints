@@ -1,0 +1,123 @@
+/* Auto-generated ProgramImpl Code */
+
+import java.util.*;              /* java Predefined*/
+import javax.baja.nre.util.*;    /* nre Predefined*/
+import javax.baja.sys.*;         /* baja Predefined*/
+import javax.baja.status.*;      /* baja Predefined*/
+import javax.baja.util.*;        /* baja Predefined*/
+import com.tridium.program.*;    /* program-rt Predefined*/
+import javax.baja.control.*;     /* control-rt User Defined*/
+import javax.baja.collection.*;  /* baja User Defined*/
+import javax.baja.naming.*;      /* baja User Defined*/
+
+public class ProgramImpl
+  extends com.tridium.program.ProgramBase
+{
+
+////////////////////////////////////////////////////////////////
+// Getters
+////////////////////////////////////////////////////////////////
+
+  public BNameMap getDisplayNames() { return (BNameMap)get("displayNames"); }
+
+////////////////////////////////////////////////////////////////
+// Setters
+////////////////////////////////////////////////////////////////
+
+  public void setDisplayNames(javax.baja.util.BNameMap v) { set("displayNames", v); }
+
+////////////////////////////////////////////////////////////////
+// Program Source
+////////////////////////////////////////////////////////////////
+
+  // Release All Points
+  public void onReleaseAllPoints() throws Exception {
+    
+    onReleaseBooleanPoints();
+    onReleaseNumericPoints();
+    onReleaseEnumPoints();
+    onReleaseStringPoints();
+  
+  }
+  
+  
+  // Release All Boolean Writable Points
+  public void onReleaseBooleanPoints() throws Exception {
+    
+    BBooleanWritable point = null;
+    
+    BITable table = (BITable)BOrd.make("station:|slot:/|bql:select * from control:BooleanWritable").get();
+    TableCursor<BBooleanWritable> cursor = table.cursor();
+    
+    while(cursor.next()) {
+      
+      point = cursor.get();
+      if(point.getStatus().isOverridden()) {
+        System.out.println("Releasing: " + point.getSlotPath() + " " + point.getOut());
+        point.doAuto();
+        point.doEmergencyAuto();
+      }
+    }
+    cursor.close();
+  }
+  
+  // Release All Numeric Writable Points
+  public void onReleaseNumericPoints() throws Exception {
+    
+    BNumericWritable point = null;
+    
+    BITable table = (BITable)BOrd.make("station:|slot:/|bql:select * from control:NumericWritable").get();
+    TableCursor<BNumericWritable> cursor = table.cursor();
+    
+    while(cursor.next()) {
+      
+      point = cursor.get();
+      if(point.getStatus().isOverridden()) {
+        System.out.println("Releasing: " + point.getSlotPath() + " " + point.getOut());
+        point.doAuto();
+        point.doEmergencyAuto();
+      }
+    }
+    cursor.close();
+  }
+  
+  // Release All Enum Writable Points
+  public void onReleaseEnumPoints() throws Exception {
+    
+    BEnumWritable point = null;
+    
+    BITable table = (BITable)BOrd.make("station:|slot:/|bql:select * from control:EnumWritable").get();
+    TableCursor<BEnumWritable> cursor = table.cursor();
+    
+    while(cursor.next()) {
+      
+      point = cursor.get();
+      if(point.getStatus().isOverridden()) {
+        System.out.println("Releasing: " + point.getSlotPath() + " " + point.getOut());
+        point.doAuto();
+        point.doEmergencyAuto();
+      }
+    }
+    cursor.close();
+  }
+  
+  // Release All String Writable Points
+  public void onReleaseStringPoints() throws Exception {
+    
+    BStringWritable point = null;
+    
+    BITable table = (BITable)BOrd.make("station:|slot:/|bql:select * from control:StringWritable").get();
+    TableCursor<BStringWritable> cursor = table.cursor();
+    
+    while(cursor.next()) {
+      
+      point = cursor.get();
+      if(point.getStatus().isOverridden()) {
+        System.out.println("Releasing: " + point.getSlotPath() + " " + point.getOut());
+        point.doAuto();
+        point.doEmergencyAuto();
+      }
+    }
+    cursor.close();
+  } 
+}
